@@ -11,6 +11,22 @@
 <body>
     <div class="container">
         <h1>Bier van de dag</h1>
+        <div class="select-container">
+            <label for="bier-stijl-select">Selecteer een bierstijl:</label>
+            <select id="bier-stijl-select">
+                <option value="Alle">Alle</option>
+                <option value="Belgian Strong Golden Ale">Belgian Strong Golden Ale</option>
+                <option value="Lambic - Gueuze">Lambic - Gueuze</option>
+                <option value="Hefeweizen">Hefeweizen</option>
+                <option value="Sour">Sour</option>
+                <option value="Sour IPA">Sour IPA</option>
+            </select>
+        </div>
+
+        <div class="button-container">
+            <button id="toon-bier-knop">Toon mij het bier van de dag</button>
+        </div>
+
         <div class="bier-info">
             <img id="bier-afbeelding" alt="Afbeelding van het Bier">
             <h2 id="bier-naam">Naam van het Bier...</h2>
@@ -20,8 +36,10 @@
             <p id="bier-beschrijving">Beschrijving van het bier...</p>
             <p id="bier-feit">Leuk weetje...</p>
         </div>
+
         <button id="nieuw-bier-knop">Toon een ander bier</button>
     </div>
+    
     <script src="bier-van-de-dag.js"></script>
 </body>
 
