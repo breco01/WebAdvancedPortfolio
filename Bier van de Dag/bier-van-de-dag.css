@@ -41,8 +41,8 @@ p{
 }
 
 #bier-afbeelding{
-    max-width: 100%;
-    height: auto;
+    max-height: 500px;
+    width: auto;
     border-radius: 5px;
     margin-bottom: 15px;
 }
