@@ -58,21 +58,17 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   ];
 
-  
+  let selectedStijl = ""; // Variabele om de geselecteerde stijl bij te houden
+
   function selectElementById(id) {
     return document.getElementById(id);
   }
+
   function updateBierInfo(bier) {
     selectElementById("bier-naam").innerHTML = `<strong>${bier.naam}</strong>`;
-    selectElementById(
-      "bier-alcohol"
-    ).innerHTML = `<strong>Alcoholpercentage:</strong> ${bier.alcohol}`;
-    selectElementById(
-      "bier-brouwerij"
-    ).innerHTML = `<strong>Brouwerij:</strong> ${bier.brouwerij}`;
-    selectElementById(
-      "bier-stijl"
-    ).innerHTML = `<strong>Stijl:</strong> ${bier.stijl}`;
+    selectElementById("bier-alcohol").innerHTML = `<strong>Alcoholpercentage:</strong> ${bier.alcohol}`;
+    selectElementById("bier-brouwerij").innerHTML = `<strong>Brouwerij:</strong> ${bier.brouwerij}`;
+    selectElementById("bier-stijl").innerHTML = `<strong>Stijl:</strong> ${bier.stijl}`;
     selectElementById("bier-beschrijving").textContent = bier.beschrijving;
     selectElementById("bier-feit").textContent = `Leuk weetje: ${bier.feit}`;
     selectElementById("bier-afbeelding").src = bier.afbeelding;
@@ -80,50 +76,53 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function getRandomBier() {
-    const randomIndex = Math.floor(Math.random() * bierData.length);
-    return bierData[randomIndex];
-}
+    let filteredBier;
+    if (selectedStijl === "") {
+      filteredBier = bierData; // Geen stijl geselecteerd, toon alle bieren
+    } else {
+      filteredBier = bierData.filter((bier) => bier.stijl === selectedStijl);
+    }
+    const randomIndex = Math.floor(Math.random() * filteredBier.length);
+    return filteredBier[randomIndex];
+  }
 
-function filterBierByStijl(bierStijl) {
+  function filterBierByStijl(bierStijl) {
+    selectedStijl = bierStijl; // Bijhouden van de geselecteerde stijl
     if (bierStijl === "Alle") {
-        return bierData;
+      return bierData;
     } else {
-        return bierData.filter(bier => bier.stijl === bierStijl);
+      return bierData.filter((bier) => bier.stijl === bierStijl);
     }
-}
+  }
 
-const bierStijlSelect = selectElementById('bier-stijl-select');
-const toonBierKnop = selectElementById('toon-bier-knop');
+  const popup = document.querySelector(".popup");
+  const popupError = document.querySelector(".popup-error");
+  const popupBierStijlSelect = selectElementById("popup-bierstijl-select");
+  const popupToonBierKnop = selectElementById("popup-toon-bier-knop");
 
-bierStijlSelect.addEventListener('change', () => {
-    const selectedStijl = bierStijlSelect.value;
-    if (selectedStijl === "Alle") {
-        toonBierKnop.disabled = true;
+  // Display the popup initially
+  popup.classList.add("show");
+
+  popupToonBierKnop.addEventListener("click", () => {
+    const selectedStijl = popupBierStijlSelect.value;
+    if (selectedStijl === "") {
+      popupError.textContent = "Selecteer eerst een bierstijl.";
+      popupError.style.display = "block";
     } else {
-        toonBierKnop.disabled = false;
+      popupError.style.display = "none";
+      popup.classList.remove("show");
+      filterBierByStijl(selectedStijl);
+      const newBier = getRandomBier();
+      updateBierInfo(newBier);
+      selectElementById("geselecteerde-stijl").textContent = `Geselecteerde stijl: ${selectedStijl}`;
     }
-});
+  });
 
-toonBierKnop.addEventListener('click', () => {
-    const selectedStijl = bierStijlSelect.value;
-    if (selectedStijl === "Alle") {
-        alert("Selecteer eerst een bierstijl.");
-    } else {
-        const filteredBier = filterBierByStijl(selectedStijl);
-        if (filteredBier.length > 0) {
-            const newBier = filteredBier[Math.floor(Math.random() * filteredBier.length)];
-            updateBierInfo(newBier);
-        } else {
-            alert("Er zijn geen bieren beschikbaar in deze stijl.");
-        }
-    }
-});
+  const initialBier = getRandomBier();
+  updateBierInfo(initialBier);
 
-const initialBier = getRandomBier();
-updateBierInfo(initialBier);
-
-selectElementById('nieuw-bier-knop').addEventListener('click', () => {
+  selectElementById('nieuw-bier-knop').addEventListener('click', () => {
     const newBier = getRandomBier();
     updateBierInfo(newBier);
-});
+  });
 });
