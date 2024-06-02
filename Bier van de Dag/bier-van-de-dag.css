@@ -108,7 +108,7 @@ button:hover {
     background-color: #b8860b;
 }
 
-.popup.show{
+.popup.show {
     visibility: visible;
     opacity: 1;
 }

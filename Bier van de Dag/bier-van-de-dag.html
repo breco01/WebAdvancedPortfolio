@@ -1,50 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BIER VAN DE DAG</title>
-    <link rel="stylesheet" href="bier-van-de-dag.css">
-    <link rel="icon" href="Afbeeldingen/SiteIcon.png">
-</head>
+    <link rel="stylesheet" href="bier-van-de-dag.css" />
+    <link rel="icon" href="Afbeeldingen/SiteIcon.png" />
+  </head>
 
-<body>
-    <div class="popup">
-        <div class="popup-content">
-            <h2>Selecteer een bierstijl</h2>
-            <div class="select-container">
-                <label for="popup-bierstijl-select">Selecteer een bierstijl:</label>
-                <select id="popup-bierstijl-select">
-                    <option value="">Selecteer...</option>
-                    <option value="Belgian Strong Golden Ale">Belgian Strong Golden Ale</option>
-                    <option value="Lambic - Gueuze">Lambic - Gueuze</option>
-                    <option value="Hefeweizen">Hefeweizen</option>
-                    <option value="Sour">Sour</option>
-                </select>
-            </div>
-            <button id="popup-toon-bier-knop">Toon mij het bier van de dag</button>
-            <p class="popup-error"></p>
+  <body>
+    <div class="popup show">
+      <div class="popup-content">
+        <h2>Selecteer een bierstijl</h2>
+        <div class="select-container">
+          <label for="popup-bierstijl-select">Selecteer een bierstijl:</label>
+          <select id="popup-bierstijl-select">
+            <option value="">Selecteer...</option>
+            <option value="Belgian Strong Golden Ale">
+              Belgian Strong Golden Ale
+            </option>
+            <option value="Lambic - Gueuze">Lambic - Gueuze</option>
+            <option value="Hefeweizen">Hefeweizen</option>
+            <option value="Sour">Sour</option>
+          </select>
         </div>
+        <button id="popup-toon-bier-knop">Toon mij het bier van de dag</button>
+        <p class="popup-error"></p>
+      </div>
     </div>
 
     <div class="container">
-        <h1>Bier van de dag</h1>
-        <h2 id="geselecteerde-stijl">Geselecteerde stijl: Geen</h2>
-        <div class="bier-info">
-            <img id="bier-afbeelding" alt="Afbeelding van het Bier">
-            <h2 id="bier-naam">Naam van het Bier...</h2>
-            <p id="bier-alcohol">Alcoholpercentage:...</p>
-            <p id="bier-brouwerij">Brouwerij...</p>
-            <p id="bier-stijl">Stijl...</p>
-            <p id="bier-beschrijving">Beschrijving van het bier...</p>
-            <p id="bier-feit">Leuk weetje...</p>
-        </div>
+      <h1>Bier van de dag</h1>
+      <h2 id="geselecteerde-stijl">Geselecteerde stijl: Geen</h2>
+      <div class="bier-info">
+        <img id="bier-afbeelding" alt="Afbeelding van het Bier" />
+        <h2 id="bier-naam">Naam van het Bier...</h2>
+        <p id="bier-alcohol">Alcoholpercentage:...</p>
+        <p id="bier-brouwerij">Brouwerij...</p>
+        <p id="bier-stijl">Stijl...</p>
+        <p id="bier-beschrijving">Beschrijving van het bier...</p>
+        <p id="bier-feit">Leuk weetje...</p>
+      </div>
 
-        <button id="nieuw-bier-knop">Toon een ander bier</button>
+      <button id="nieuw-bier-knop">Toon een ander bier</button>
     </div>
 
-    <script src="bier-van-de-dag.js"></script>
-</body>
-
+    <script src="bier-van-de-dag.js" type="module"></script>
+    <script src="bier-data.js" type="module"></script>
+  </body>
 </html>

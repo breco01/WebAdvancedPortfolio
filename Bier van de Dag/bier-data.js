@@ -1,0 +1,56 @@
+export const bierData = [
+    {
+        naam: "Cornet Oaked",
+        alcohol: "8,5%",
+        brouwerij: "Brouwerij De Hoorn",
+        stijl: "Sour",
+        beschrijving:
+          "Cornet Oaked is een Belgisch blond bier van hoge gisting. Het heeft een stevig alcoholpercentage en een complex smaakprofiel met fruitige tonen, kruidige aroma's en een subtiele zoetheid van mout. Wat het onderscheidt, is zijn rijping op eikenhouten vaten, wat een extra laag van complexiteit en een lichte houtsmaak toevoegt aan het bier.",
+        feit: "Oorspronkelijk werd Cornet Oaked voor de eerste keer gebrouwen in de 17de eeuw door verre familie van mij.",
+        afbeelding: "Afbeeldingen/Cornet.png",
+      },
+  
+      {
+        naam: "Oude Geuze Cuvée Armand & Gaston",
+        alcohol: "5,5%",
+        brouwerij: "3 Fonteinen",
+        stijl: "Lambic - Gueuze",
+        beschrijving:
+          "3 Fonteinen Oude Geuze Cuvee Armand & Gaston is een Belgische geuze van wereldklasse, vernoemd naar Armand Debelder en zijn zoon Gaston. Het bier wordt traditioneel geproduceerd door het blenden van verschillende leeftijden lambiek en hergist op fles. Het resultaat is een complexe en evenwichtige smaak met tonen van citrus en groene appel, dankzij wilde gisten. Cuvee Armand & Gaston wordt beschouwd als een hoogtepunt van vakmanschap binnen de wereld van geuzebieren.",
+        feit: "Dit bier is vernoemd naar Armand Debelder, de meesterbrouwer van 3 Fonteinen, en zijn zoon Gaston, die de toekomst van de brouwerij vertegenwoordigt.",
+        afbeelding: "Afbeeldingen/3Fonteinen.png",
+      },
+  
+      {
+        naam: "Hefe Weisse Naturtrüb",
+        alcohol: "5,4%",
+        brouwerij: "Brasserie de la Mule",
+        stijl: "Hefeweizen",
+        beschrijving:
+          "Hefe Weisse Naturtrüb is een Duits tarwebier dat bekend staat om zijn troebelheid, verfrissende smaak en fruitige aroma's. Het wordt traditioneel gebrouwen met een aanzienlijk percentage tarwemout, wat het zijn kenmerkende volle body en romige textuur geeft. Dit bier heeft vaak tonen van banaan, kruidnagel en soms zelfs een vleugje vanille, allemaal afkomstig van de karakteristieke gist die wordt gebruikt tijdens de fermentatie. Hefe Weisse Naturtrüb is geliefd bij bierliefhebbers vanwege zijn levendige en sprankelende karakter, perfect voor het verfrissen op een zomerse dag.",
+        feit: "Dit bier wordt traditioneel geserveerd met een schijfje citroen om de fruitige aroma's te accentueren en het bier verfrissender te maken.",
+        afbeelding: "Afbeeldingen/HefeWeisse.png",
+      },
+  
+      {
+        naam: "Hands of Desire - Mezcal Barrel Aged Imperial Sour",
+        alcohol: "7%",
+        brouwerij: "Brasserie Surréaliste",
+        stijl: "Sour",
+        beschrijving:
+          "Hands of Desire - Mezcal Barrel Aged Imperial Sour is een krachtige en complexe bierervaring. Dit bier, geïnspireerd op een traditionele Mexicaanse drank, wordt gebrouwen met een scala aan exotische ingrediënten en vervolgens gerijpt in mezcalvaten. Het resultaat is een explosie van smaak, met tonen van tropisch fruit, houtachtige rokerigheid en een pittige zuurgraad. Dit bier is een avontuur voor de smaakpapillen, perfect voor degenen die op zoek zijn naar iets unieks en gedurfd in hun bierervaring.",
+        feit: "Dit bier wordt gerijpt op mezcalvaten, wat een extra dimensie van complexiteit en smaak toevoegt aan het bier, waardoor het een unieke en onvergetelijke ervaring wordt.",
+        afbeelding: "Afbeeldingen/HandsOfDesire.png",
+      },
+  
+      {
+        naam: "A Plein Verre",
+        alcohol: "5,5%",
+        brouwerij: "DOK Brewing Company",
+        stijl: "Sour",
+        beschrijving:
+          "Uit de Gentse wateren ontspringt vandaag een biertje met Brusselse nasmaak. BierKultuur stelt trots haar smaakmakend kindje voor. Onze zure, hoppige bébé. Onze à plein verre. Student, liefhebber of eender wie: tiens ton verre et le bonheur en main!",
+        feit: "Tijdens mijn voorzittersjaar bij de studentenvereniging BierKultuur heb ik persoonlijk dit bier gebrouwen in samenwerking met DOK Brewing Company in Gent.",
+        afbeelding: "Afbeeldingen/APleinVerre.png",
+      },
+    ];
