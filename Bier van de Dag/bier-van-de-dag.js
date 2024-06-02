@@ -5,6 +5,7 @@ import { bierData } from "./bier-data.js";
 document.addEventListener("DOMContentLoaded", () => {
 
   let selectedStijl = ""; // Variabele om de geselecteerde stijl bij te houden, initieel leeg
+  let currentBier = "";
 
   function selectElementById(id) {
     return document.getElementById(id);
@@ -29,9 +30,10 @@ document.addEventListener("DOMContentLoaded", () => {
     selectElementById("bier-brouwerij").innerHTML = `<strong>Brouwerij:</strong> ${brouwerij}`;
     selectElementById("bier-stijl").innerHTML = `<strong>Stijl:</strong> ${stijl}`;
     selectElementById("bier-beschrijving").textContent = beschrijving;
-    selectElementById("bier-feit").textContent = `Leuk weetje: ${feit}`;
     selectElementById("bier-afbeelding").src = afbeelding;
     selectElementById("bier-afbeelding").alt = naam;
+
+    currentBier = bier;
   }
 
   function getRandomBier() {
@@ -45,16 +47,39 @@ document.addEventListener("DOMContentLoaded", () => {
     return filteredBier[randomIndex];
   }
 
-  function filterBierByStijl(bierStijl) {
-    selectedStijl = bierStijl; // Bijhouden van de geselecteerde stijl
-    if (bierStijl === "Alle") {
-      return bierData;
-    } else {
-      return bierData.filter((bier) => bier.stijl === bierStijl);
-    }
+  function fetchBierWeetje(bier) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (bier && bier.feit) {
+          resolve(bier.feit);
+        } else {
+          reject("Geen weetje gevonden voor het geselecteerde bier.");
+        }
+      });
+    });
   }
 
+  function displayBierWeetje(bier) {
+    fetchBierWeetje(bier)
+      .then((weetje) => {
+        const weetjeElement = selectElementById("bier-weetje");
+        const weetjeKnop = selectElementById("toon-weetje-knop");
 
+        weetjeElement.innerHTML = `<strong>Leuk weetje:</strong><br> ${weetje}`;
+        weetjeKnop.style.display = "none";
+      })
+      .catch((error) => {
+        console.error(error);
+        const weetjeElement = selectElementById("bier-weetje");
+        weetjeElement.textContent = "Er is een fout opgetreden bij het ophalen van het weetje.";
+      });
+  }
+
+  selectElementById("toon-weetje-knop").addEventListener("click", () => {
+    if (currentBier) {
+      displayBierWeetje(currentBier);
+    }
+  });
 
   const popup = document.querySelector(".popup");
   const popupError = document.querySelector(".popup-error");
@@ -72,7 +97,6 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       popupError.style.display = "none";
       popup.classList.remove("show");
-      filterBierByStijl(selectedStijl);
       const newBier = getRandomBier();
       updateBierInfo(newBier);
       selectElementById("geselecteerde-stijl").textContent = `Geselecteerde stijl: ${selectedStijl}`;
@@ -85,5 +109,12 @@ document.addEventListener("DOMContentLoaded", () => {
   selectElementById('nieuw-bier-knop').addEventListener('click', () => {
     const newBier = getRandomBier();
     updateBierInfo(newBier);
+
+    const weetjeElement = selectElementById("bier-weetje");
+    weetjeElement.textContent = ""; //Maak de inhoud van het weetje leeg
+
+    const weetjeKnop = selectElementById("toon-weetje-knop");
+    weetjeKnop.style.display = "block"; // Maak de knop weer zichtbaar
+    weetjeKnop.style.margin = "auto"
   });
 });
