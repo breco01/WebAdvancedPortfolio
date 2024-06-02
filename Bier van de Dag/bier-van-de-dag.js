@@ -90,13 +90,14 @@ document.addEventListener("DOMContentLoaded", () => {
   popup.classList.add("show");
 
   popupToonBierKnop.addEventListener("click", () => {
-    const selectedStijl = popupBierStijlSelect.value;
-    if (selectedStijl === "") {
+    const selectedStijlValue = popupBierStijlSelect.value;
+    if (selectedStijlValue === "") {
       popupError.textContent = "Selecteer eerst een bierstijl.";
       popupError.style.display = "block";
     } else {
       popupError.style.display = "none";
       popup.classList.remove("show");
+      selectedStijl = selectedStijlValue;
       const newBier = getRandomBier();
       updateBierInfo(newBier);
       selectElementById("geselecteerde-stijl").textContent = `Geselecteerde stijl: ${selectedStijl}`;
@@ -107,7 +108,10 @@ document.addEventListener("DOMContentLoaded", () => {
   updateBierInfo(initialBier);
 
   selectElementById('nieuw-bier-knop').addEventListener('click', () => {
-    const newBier = getRandomBier();
+    let newBier = getRandomBier();
+    while (newBier === currentBier) {
+      newBier = getRandomBier();
+    }
     updateBierInfo(newBier);
 
     const weetjeElement = selectElementById("bier-weetje");
