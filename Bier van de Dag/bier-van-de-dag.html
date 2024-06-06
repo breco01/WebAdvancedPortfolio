@@ -11,29 +11,29 @@
   </head>
 
   <body>
-    <div class="overlay"></div>
     <div class="popup show">
       <div class="popup-content">
-        <h2>Selecteer een bierstijl</h2>
-        <div class="select-container">
-          <label for="popup-bierstijl-select">Selecteer een bierstijl:</label>
-          <select id="popup-bierstijl-select">
-            <option value="">Selecteer...</option>
-            <option value="Belgian Strong Golden Ale">
-              Belgian Strong Golden Ale
-            </option>
-            <option value="Lambic - Gueuze">Lambic - Gueuze</option>
-            <option value="Hefeweizen">Hefeweizen</option>
-            <option value="Sour">Sour</option>
-          </select>
-        </div>
-        <button id="popup-toon-bier-knop">Toon mij het bier van de dag</button>
+        <h1>WELKOM</h1>
+        <h2>Vul je geboortedatum in om verder te gaan</h2>
+        <input type="date" id="geboortedatum-input">
+        <button id="bevestig-knop">Bevestig</button>
         <p class="popup-error"></p>
       </div>
     </div>
 
     <div class="container">
-      <h1>Bier van de dag</h1>
+      <h1>BIER VAN DE DAG</h1>
+      <div class="select-container">
+        <label for="popup-bierstijl-select">Selecteer een bierstijl:</label>
+        <select id="popup-bierstijl-select">
+          <option value="">Selecteer...</option>
+          <option value="Belgian Strong Golden Ale">
+            Belgian Strong Golden Ale
+          </option>
+          <option value="Lambic - Gueuze">Lambic - Gueuze</option>
+          <option value="Hefeweizen">Hefeweizen</option>
+          <option value="Sour">Sour</option>
+        </select>
       <h2 id="geselecteerde-stijl">Geselecteerde stijl: Geen</h2>
       <div class="bier-info">
         <img id="bier-afbeelding" alt="Afbeelding van het Bier" />

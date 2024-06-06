@@ -7,7 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentBier = "";
 
   function initializeMap(latitude, longitude) {
-    mapboxgl.accessToken = "pk.eyJ1IjoiYnJlbnRjb3JuZXQiLCJhIjoiY2x4M2V4bTRwMDA5NjJrc2I0OWlzczh5aSJ9.WRIVm2FPJm5Sb4ovgDUxbg"
+    mapboxgl.accessToken =
+      "pk.eyJ1IjoiYnJlbnRjb3JuZXQiLCJhIjoiY2x4M2V4bTRwMDA5NjJrc2I0OWlzczh5aSJ9.WRIVm2FPJm5Sb4ovgDUxbg";
     const map = new mapboxgl.Map({
       container: "map",
       style: "mapbox://styles/mapbox/light-v10",
@@ -15,7 +16,9 @@ document.addEventListener("DOMContentLoaded", () => {
       zoom: 12,
     });
 
-    new mapboxgl.Marker({color: '#b8860b'}).setLngLat([longitude, latitude]).addTo(map);
+    new mapboxgl.Marker({ color: "#b8860b" })
+      .setLngLat([longitude, latitude])
+      .addTo(map);
   }
 
   function selectElementById(id) {
@@ -95,49 +98,41 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  const overlay = document.querySelector(".overlay");
   const popup = document.querySelector(".popup");
   const popupError = document.querySelector(".popup-error");
   const popupBierStijlSelect = selectElementById("popup-bierstijl-select");
-  const popupToonBierKnop = selectElementById("popup-toon-bier-knop");
+  const popupBevestigKnop = selectElementById("bevestig-knop");
   const container = document.querySelector(".container");
 
-  function showOverlay() {
-    overlay.style.display = "block";
-  }
+  popupBevestigKnop.addEventListener("click", () => {
+    const geboortedatumInput = document.getElementById("geboortedatum-input").value;
+    const geboortedatum = new Date(geboortedatumInput);
+    const huidigeDatum = new Date();
+    const verschilInJaren = huidigeDatum.getFullYear() - geboortedatum.getFullYear();
 
-  function hideOverlay() {
-    overlay.style.display = "none";
-  }
-
-  function hidePopup() {
-    popup.classList.remove("show");
-    hideOverlay();
-  }
-
-  function showContainer() {
-    container.classList.add("show");
-  }
-
-  // Popup initieel weergeven
-  popup.classList.add("show");
-  showOverlay();
-
-  popupToonBierKnop.addEventListener("click", () => {
-    const selectedStijlValue = popupBierStijlSelect.value;
-    if (selectedStijlValue === "") {
-      popupError.textContent = "Selecteer eerst een bierstijl.";
+    if (verschilInJaren < 16){
+      popupError.textContent = "Je moet minimaal 16 jaar zijn om deze website te bezoeken.";
       popupError.style.display = "block";
     } else {
       popupError.style.display = "none";
-      hidePopup();
-      selectedStijl = selectedStijlValue;
-      const newBier = getRandomBier(selectedStijl);
-      updateBierInfo(newBier);
-      selectElementById(
-        "geselecteerde-stijl"
-      ).textContent = `Geselecteerde stijl: ${selectedStijl}`;
-      showContainer();
+      popup.classList.remove("show");
+
+      popupBierStijlSelect.addEventListener("change", () => {
+        const selectedStijlValue = popupBierStijlSelect.value;
+        selectedStijl = selectedStijlValue;
+        const newBier = getRandomBier(selectedStijl);
+        updateBierInfo(newBier);
+        selectElementById(
+          "geselecteerde-stijl"
+        ).textContent = `Geselecteerde stijl: ${selectedStijl}`;
+      });
+
+      container.classList.add("show");
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
     }
   });
 
@@ -145,9 +140,9 @@ document.addEventListener("DOMContentLoaded", () => {
   updateBierInfo(initialBier);
 
   selectElementById("nieuw-bier-knop").addEventListener("click", () => {
-    let newBier = getRandomBier();
+    let newBier = getRandomBier(selectedStijl);
     while (newBier === currentBier) {
-      newBier = getRandomBier();
+      newBier = getRandomBier(selectedStijl);
     }
     updateBierInfo(newBier);
 
@@ -157,5 +152,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const weetjeKnop = selectElementById("toon-weetje-knop");
     weetjeKnop.style.display = "block"; // Maak de knop weer zichtbaar
     weetjeKnop.style.margin = "auto";
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   });
 });
