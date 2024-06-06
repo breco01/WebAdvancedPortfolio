@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
           reject("Geen weetje gevonden voor het geselecteerde bier.");
         }
-      });
+      }, 1000);
     });
   }
 
@@ -92,10 +92,67 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  function saveToFavorites(bier) {
+    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+    const isDuplicate = favorites.some(
+      (favorite) => favorite.naam === bier.naam
+    );
+
+    if (!isDuplicate) {
+      favorites.push(bier);
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+      alert(`${bier.naam} is toegevoegd aan je favorieten!`);
+      displayFavorites();
+    } else {
+      alert(`${bier.naam} is al toegevoegd aan je favorieten!`);
+    }
+  }
+
+  function loadFavorites() {
+    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    console.log("Favoriete bieren:", favorites);
+    return favorites;
+  }
+
+  function displayFavorites() {
+    const favorites = loadFavorites();
+    const favorietenLijst = selectElementById("favorieten-lijst");
+    favorietenLijst.innerHTML = ""; // Leeg de lijst
+
+    if (favorites.length === 0) {
+      favorietenLijst.innerHTML = "<p>Je hebt nog geen favoriete bieren.</p>";
+      return;
+    }
+
+    favorites.forEach((bier) => {
+      const bierElement = document.createElement("div");
+      bierElement.classList.add("favoriet-item");
+
+      bierElement.innerHTML = `
+        <h3>${bier.naam}</h3>
+        <p><strong>Alcoholpercentage:</strong> ${bier.alcohol}</p>
+        <p><strong>Brouwerij:</strong> ${bier.brouwerij}</p>
+        <p><strong>Stijl:</strong> ${bier.stijl}</p>
+        <p>${bier.beschrijving}</p>
+        <img src="${bier.afbeelding}" alt="${bier.naam}" class="favoriet-afbeelding" />
+      `;
+
+      favorietenLijst.appendChild(bierElement);
+    });
+  }
+
   selectElementById("toon-weetje-knop").addEventListener("click", () => {
     if (currentBier) {
       displayBierWeetje(currentBier);
     }
+  });
+
+  const zieMijnFavorietenKnop = selectElementById("zie-mijn-favorieten");
+  zieMijnFavorietenKnop.addEventListener("click", () => {
+    const favorietenContainer = document.querySelector(".favorieten-container");
+    favorietenContainer.classList.toggle("show"); // Toggle de klasse om de favorieten-container te tonen of te verbergen
+    displayFavorites(); // Toon de favorieten bij klikken op de knop
   });
 
   const popup = document.querySelector(".popup");
@@ -105,13 +162,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const container = document.querySelector(".container");
 
   popupBevestigKnop.addEventListener("click", () => {
-    const geboortedatumInput = document.getElementById("geboortedatum-input").value;
+    const geboortedatumInput = document.getElementById(
+      "geboortedatum-input"
+    ).value;
     const geboortedatum = new Date(geboortedatumInput);
     const huidigeDatum = new Date();
-    const verschilInJaren = huidigeDatum.getFullYear() - geboortedatum.getFullYear();
+    const verschilInJaren =
+      huidigeDatum.getFullYear() - geboortedatum.getFullYear();
 
-    if (verschilInJaren < 16){
-      popupError.textContent = "Je moet minimaal 16 jaar zijn om deze website te bezoeken.";
+    if (verschilInJaren < 16) {
+      popupError.textContent =
+        "Je moet minimaal 16 jaar zijn om deze website te bezoeken.";
       popupError.style.display = "block";
     } else {
       popupError.style.display = "none";
@@ -158,4 +219,6 @@ document.addEventListener("DOMContentLoaded", () => {
       behavior: "smooth",
     });
   });
+
+  loadFavorites();
 });

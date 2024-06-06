@@ -137,6 +137,65 @@ select{
     animation: fadeIn 0.5s ease forwards;
 }
 
+.favorieten-container {
+    display: none; /* Start standaard verborgen */
+    position: fixed; /* Vastzetten op het scherm */
+    top: 50%; /* Plaats in het midden van het scherm */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff; /* Achtergrondkleur */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Schaduw-effect */
+    z-index: 1000; /* Zorg ervoor dat het bovenop andere elementen staat */
+    max-width: 400px; /* Maximale breedte */
+    max-height: 80%; /* Maximale hoogte */
+    overflow-y: auto; /* Toon een verticale schuifbalk indien nodig */
+  }
+  
+  .favorieten-container.show {
+    display: block; /* Toon container wanneer de klasse "show" wordt toegevoegd */
+  }
+  
+  .favorieten-container h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+  
+  .favorieten-container ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .favorieten-container ul li {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .favorieten-container .sluit-knop {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #999;
+  }
+  
+  .favorieten-container .sluit-knop:hover {
+    color: #666;
+  }
+  
+  /* Maximale breedte voor afbeeldingen */
+  .favorieten-container img {
+    max-width: 100%; /* Afbeeldingen worden geschaald om binnen de container te passen */
+    height: auto; /* Behoud de aspectverhouding van de afbeeldingen */
+  }
+  
+
+.hidden{
+    display: none;
+}
+
 h1 {
     font-size: 48px;
     color: #d4af37;
