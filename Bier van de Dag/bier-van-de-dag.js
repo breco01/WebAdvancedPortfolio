@@ -6,6 +6,18 @@ document.addEventListener("DOMContentLoaded", () => {
   let selectedStijl = ""; // Variabele om de geselecteerde stijl bij te houden, initieel leeg
   let currentBier = "";
 
+  function initializeMap(latitude, longitude) {
+    mapboxgl.accessToken = "pk.eyJ1IjoiYnJlbnRjb3JuZXQiLCJhIjoiY2x4M2V4bTRwMDA5NjJrc2I0OWlzczh5aSJ9.WRIVm2FPJm5Sb4ovgDUxbg"
+    const map = new mapboxgl.Map({
+      container: "map",
+      style: "mapbox://styles/mapbox/light-v10",
+      center: [longitude, latitude],
+      zoom: 12,
+    });
+
+    new mapboxgl.Marker({color: '#b8860b'}).setLngLat([longitude, latitude]).addTo(map);
+  }
+
   function selectElementById(id) {
     return document.getElementById(id);
   }
@@ -30,6 +42,8 @@ document.addEventListener("DOMContentLoaded", () => {
     selectElementById("bier-beschrijving").textContent = beschrijving;
     selectElementById("bier-afbeelding").src = afbeelding;
     selectElementById("bier-afbeelding").alt = naam;
+
+    initializeMap(bier.locatie.latitude, bier.locatie.longitude);
 
     currentBier = bier;
   }

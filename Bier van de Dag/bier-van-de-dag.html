@@ -4,8 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BIER VAN DE DAG</title>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css" rel="stylesheet">
     <link rel="stylesheet" href="bier-van-de-dag.css" />
     <link rel="icon" href="Afbeeldingen/SiteIcon.png" />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js"></script>
   </head>
 
   <body>
@@ -38,6 +40,7 @@
         <h2 id="bier-naam">Naam van het Bier...</h2>
         <p id="bier-alcohol">Alcoholpercentage:...</p>
         <p id="bier-brouwerij">Brouwerij...</p>
+        <div id="map" class="map"></div>
         <p id="bier-stijl">Stijl...</p>
         <p id="bier-beschrijving">Beschrijving van het bier...</p>
         <button id="toon-weetje-knop">Toon mij een leuk weetje over dit bier</button>
@@ -47,6 +50,7 @@
       <button id="nieuw-bier-knop">Toon een ander bier</button>
     </div>
 
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="bier-van-de-dag.js" type="module"></script>
     <script src="bier-data.js" type="module"></script>
   </body>
