@@ -36,12 +36,12 @@ document.addEventListener("DOMContentLoaded", () => {
     currentBier = bier;
   }
 
-  function getRandomBier() {
+  function getRandomBier(...args) {
     let filteredBier;
     if (selectedStijl === "") {
-      filteredBier = bierData; // Geen stijl geselecteerd, toon alle bieren
+      filteredBier = [...bierData]; // Geen stijl geselecteerd, toon alle bieren
     } else {
-      filteredBier = bierData.filter((bier) => bier.stijl === selectedStijl);
+      filteredBier = [...bierData.filter((bier) => bier.stijl === selectedStijl)];
     }
     const randomIndex = Math.floor(Math.random() * filteredBier.length);
     return filteredBier[randomIndex];
@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
       popupError.style.display = "none";
       popup.classList.remove("show");
       selectedStijl = selectedStijlValue;
-      const newBier = getRandomBier();
+      const newBier = getRandomBier(selectedStijl);
       updateBierInfo(newBier);
       selectElementById("geselecteerde-stijl").textContent = `Geselecteerde stijl: ${selectedStijl}`;
     }
