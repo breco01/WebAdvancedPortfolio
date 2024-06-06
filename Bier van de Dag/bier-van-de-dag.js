@@ -3,7 +3,6 @@
 import { bierData } from "./bier-data.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-
   let selectedStijl = ""; // Variabele om de geselecteerde stijl bij te houden, initieel leeg
   let currentBier = "";
 
@@ -15,20 +14,19 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("updateBierInfo wordt aangeroepen...");
     console.log("Ontvangen bier object:", bier);
     // Destructuring
-    const {
-      naam,
-      alcohol,
-      brouwerij,
-      stijl,
-      beschrijving,
-      feit,
-      afbeelding
-    } = bier;
+    const { naam, alcohol, brouwerij, stijl, beschrijving, feit, afbeelding } =
+      bier;
 
     selectElementById("bier-naam").innerHTML = `<strong>${naam}</strong>`;
-    selectElementById("bier-alcohol").innerHTML = `<strong>Alcoholpercentage:</strong> ${alcohol}`;
-    selectElementById("bier-brouwerij").innerHTML = `<strong>Brouwerij:</strong> ${brouwerij}`;
-    selectElementById("bier-stijl").innerHTML = `<strong>Stijl:</strong> ${stijl}`;
+    selectElementById(
+      "bier-alcohol"
+    ).innerHTML = `<strong>Alcoholpercentage:</strong> ${alcohol}`;
+    selectElementById(
+      "bier-brouwerij"
+    ).innerHTML = `<strong>Brouwerij:</strong> ${brouwerij}`;
+    selectElementById(
+      "bier-stijl"
+    ).innerHTML = `<strong>Stijl:</strong> ${stijl}`;
     selectElementById("bier-beschrijving").textContent = beschrijving;
     selectElementById("bier-afbeelding").src = afbeelding;
     selectElementById("bier-afbeelding").alt = naam;
@@ -41,7 +39,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (selectedStijl === "") {
       filteredBier = [...bierData]; // Geen stijl geselecteerd, toon alle bieren
     } else {
-      filteredBier = [...bierData.filter((bier) => bier.stijl === selectedStijl)];
+      filteredBier = [
+        ...bierData.filter((bier) => bier.stijl === selectedStijl),
+      ];
     }
     const randomIndex = Math.floor(Math.random() * filteredBier.length);
     return filteredBier[randomIndex];
@@ -59,20 +59,20 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  function displayBierWeetje(bier) {
-    fetchBierWeetje(bier)
-      .then((weetje) => {
-        const weetjeElement = selectElementById("bier-weetje");
-        const weetjeKnop = selectElementById("toon-weetje-knop");
+  async function displayBierWeetje(bier) {
+    try {
+      const weetje = await fetchBierWeetje(bier);
+      const weetjeElement = selectElementById("bier-weetje");
+      const weetjeKnop = selectElementById("toon-weetje-knop");
 
-        weetjeElement.innerHTML = `<strong>Leuk weetje:</strong><br> ${weetje}`;
-        weetjeKnop.style.display = "none";
-      })
-      .catch((error) => {
-        console.error(error);
-        const weetjeElement = selectElementById("bier-weetje");
-        weetjeElement.textContent = "Er is een fout opgetreden bij het ophalen van het weetje.";
-      });
+      weetjeElement.innerHTML = `<strong>Leuk weetje:</strong><br> ${weetje}`;
+      weetjeKnop.style.display = "none";
+    } catch (error) {
+      console.error(error);
+      const weetjeElement = selectElementById("bier-weetje");
+      weetjeElement.textContent =
+        "Er is een fout opgetreden bij het ophalen van het weetje.";
+    }
   }
 
   selectElementById("toon-weetje-knop").addEventListener("click", () => {
@@ -100,14 +100,16 @@ document.addEventListener("DOMContentLoaded", () => {
       selectedStijl = selectedStijlValue;
       const newBier = getRandomBier(selectedStijl);
       updateBierInfo(newBier);
-      selectElementById("geselecteerde-stijl").textContent = `Geselecteerde stijl: ${selectedStijl}`;
+      selectElementById(
+        "geselecteerde-stijl"
+      ).textContent = `Geselecteerde stijl: ${selectedStijl}`;
     }
   });
 
   const initialBier = getRandomBier();
   updateBierInfo(initialBier);
 
-  selectElementById('nieuw-bier-knop').addEventListener('click', () => {
+  selectElementById("nieuw-bier-knop").addEventListener("click", () => {
     let newBier = getRandomBier();
     while (newBier === currentBier) {
       newBier = getRandomBier();
@@ -119,6 +121,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const weetjeKnop = selectElementById("toon-weetje-knop");
     weetjeKnop.style.display = "block"; // Maak de knop weer zichtbaar
-    weetjeKnop.style.margin = "auto"
+    weetjeKnop.style.margin = "auto";
   });
 });
