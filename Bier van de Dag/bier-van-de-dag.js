@@ -81,13 +81,28 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  const overlay = document.querySelector(".overlay");
   const popup = document.querySelector(".popup");
   const popupError = document.querySelector(".popup-error");
   const popupBierStijlSelect = selectElementById("popup-bierstijl-select");
   const popupToonBierKnop = selectElementById("popup-toon-bier-knop");
 
+  function showOverlay() {
+    overlay.style.display = "block";
+  }
+
+  function hideOverlay() {
+    overlay.style.display = "none";
+  }
+
+  function hidePopup() {
+    popup.classList.remove("show");
+    hideOverlay();
+  }
+
   // Popup initieel weergeven
   popup.classList.add("show");
+  showOverlay();
 
   popupToonBierKnop.addEventListener("click", () => {
     const selectedStijlValue = popupBierStijlSelect.value;
@@ -96,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
       popupError.style.display = "block";
     } else {
       popupError.style.display = "none";
-      popup.classList.remove("show");
+      hidePopup();
       selectedStijl = selectedStijlValue;
       const newBier = getRandomBier(selectedStijl);
       updateBierInfo(newBier);
