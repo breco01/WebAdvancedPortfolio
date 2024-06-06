@@ -47,6 +47,11 @@ body {
     transition: visibility 0s, opacity 0.5s;
 }
 
+.popup.show{
+    visibility: visible;
+    opacity: 1;
+}
+
 .popup-content {
     background: #fff;
     padding: 20px;
@@ -67,6 +72,17 @@ body {
     display: none;
 }
 
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
 .container {
     display: flex;
     flex-direction: column;
@@ -81,6 +97,12 @@ body {
     max-width: 600px;
     overflow: auto;
     box-sizing: border-box;
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+.container.show {
+    animation: fadeIn 0.5s ease forwards;
 }
 
 h1 {
@@ -126,9 +148,4 @@ button {
 
 button:hover {
     background-color: #b8860b;
-}
-
-.popup.show {
-    visibility: visible;
-    opacity: 1;
 }

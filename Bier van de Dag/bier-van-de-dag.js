@@ -100,6 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const popupError = document.querySelector(".popup-error");
   const popupBierStijlSelect = selectElementById("popup-bierstijl-select");
   const popupToonBierKnop = selectElementById("popup-toon-bier-knop");
+  const container = document.querySelector(".container");
 
   function showOverlay() {
     overlay.style.display = "block";
@@ -112,6 +113,10 @@ document.addEventListener("DOMContentLoaded", () => {
   function hidePopup() {
     popup.classList.remove("show");
     hideOverlay();
+  }
+
+  function showContainer() {
+    container.classList.add("show");
   }
 
   // Popup initieel weergeven
@@ -132,6 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
       selectElementById(
         "geselecteerde-stijl"
       ).textContent = `Geselecteerde stijl: ${selectedStijl}`;
+      showContainer();
     }
   });
 
