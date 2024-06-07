@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function displayFavorites() {
     const favorites = loadFavorites();
     const favorietenLijst = selectElementById("favorieten-lijst");
-    favorietenLijst.innerHTML = ""; // Leeg de lijst
+    favorietenLijst.innerHTML = "";
 
     if (favorites.length === 0) {
       favorietenLijst.innerHTML = "<p>Je hebt nog geen favoriete bieren.</p>";
@@ -197,6 +197,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const popupBevestigKnop = selectElementById("bevestig-knop");
   const container = document.querySelector(".container");
 
+  function deleteWeetjeContent() {
+    const weetjeElement = selectElementById("bier-weetje");
+    weetjeElement.textContent = ""; // Maak de inhoud van het weetje leeg
+
+    const weetjeKnop = selectElementById("toon-weetje-knop");
+    weetjeKnop.style.display = "block"; // Maak de knop weer zichtbaar
+    weetjeKnop.style.margin = "auto";
+  } 
+
   popupBevestigKnop.addEventListener("click", () => {
     const geboortedatumInput = document.getElementById("geboortedatum-input").value;
     const geboortedatum = new Date(geboortedatumInput);
@@ -216,6 +225,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const newBier = getRandomBier(selectedStijl);
         updateBierInfo(newBier);
         selectElementById("geselecteerde-stijl").textContent = `Geselecteerde stijl: ${selectedStijl}`;
+        deleteWeetjeContent();
       });
 
       container.classList.add("show");
@@ -242,13 +252,7 @@ document.addEventListener("DOMContentLoaded", () => {
       newBier = getRandomBier(selectedStijl);
     }
     updateBierInfo(newBier);
-
-    const weetjeElement = selectElementById("bier-weetje");
-    weetjeElement.textContent = ""; // Maak de inhoud van het weetje leeg
-
-    const weetjeKnop = selectElementById("toon-weetje-knop");
-    weetjeKnop.style.display = "block"; // Maak de knop weer zichtbaar
-    weetjeKnop.style.margin = "auto";
+    deleteWeetjeContent();
 
     window.scrollTo({
       top: 0,
