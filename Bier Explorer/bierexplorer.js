@@ -2,6 +2,8 @@
 
 import { bierData } from "./bier-data.js";
 
+(function() {console.log("Dit is een self executing function");})
+
 document.addEventListener("DOMContentLoaded", () => {
   let selectedStijl = "";
   let currentBier = "";
@@ -71,6 +73,14 @@ document.addEventListener("DOMContentLoaded", () => {
           reject("Geen weetje gevonden voor het geselecteerde bier.");
         }
       }, 200);
+    })
+    .then((weetje) => {
+      console.log("Weetje opgelost:", weetje);
+      return weetje;
+    })
+    .catch((error) => {
+      console.error("Fout bij het ophalen van het weetje:", error);
+      throw error;
     });
   }
 
