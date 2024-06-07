@@ -3,7 +3,7 @@
 import { bierData } from "./bier-data.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  let selectedStijl = ""; // Variabele om de geselecteerde stijl bij te houden, initieel leeg
+  let selectedStijl = "";
   let currentBier = "";
 
   function initializeMap(latitude, longitude) {
@@ -151,8 +151,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const zieMijnFavorietenKnop = selectElementById("zie-mijn-favorieten");
   zieMijnFavorietenKnop.addEventListener("click", () => {
     const favorietenContainer = document.querySelector(".favorieten-container");
-    favorietenContainer.classList.toggle("show"); // Toggle de klasse om de favorieten-container te tonen of te verbergen
-    displayFavorites(); // Toon de favorieten bij klikken op de knop
+    favorietenContainer.classList.toggle("show");
+    displayFavorites();
+  });
+
+  const sluitFavorietenKnop = document.querySelector(".favorieten-container .sluit-knop");
+  sluitFavorietenKnop.addEventListener("click", () => {
+    const favorietenContainer = document.querySelector(".favorieten-container");
+    favorietenContainer.classList.remove("show");
   });
 
   const popup = document.querySelector(".popup");

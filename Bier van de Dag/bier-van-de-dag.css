@@ -18,16 +18,15 @@ input[type="date"] {
     margin-bottom: 10px;
     width: 100%;
     box-sizing: border-box;
-    background-color: #fff; /* Achtergrondkleur toevoegen */
-    font-size: 16px; /* Lettergrootte vergroten */
-    color: #5a3d2b; /* Tekstkleur toevoegen */
+    background-color: #fff;
+    font-size: 16px;
+    color: #5a3d2b;
     outline: none;
 }
 
-/* Aangepaste stijlen voor de geboortedatum-input focus */
 input[type="date"]:focus {
-    border-color: #d4af37; /* Borderkleur veranderen bij focus */
-    box-shadow: 0 0 5px rgba(212, 175, 55, 0.5); /* Schaduw toevoegen bij focus */
+    border-color: #d4af37;
+    box-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
 }
 
 #bevestig-knop{
@@ -138,23 +137,23 @@ select{
 }
 
 .favorieten-container {
-    display: none; /* Start standaard verborgen */
-    position: fixed; /* Vastzetten op het scherm */
-    top: 50%; /* Plaats in het midden van het scherm */
+    display: none;
+    position: fixed;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #fff; /* Achtergrondkleur */
+    background-color: #fff;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Schaduw-effect */
-    z-index: 1000; /* Zorg ervoor dat het bovenop andere elementen staat */
-    max-width: 400px; /* Maximale breedte */
-    max-height: 80%; /* Maximale hoogte */
-    overflow-y: auto; /* Toon een verticale schuifbalk indien nodig */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    max-width: 400px;
+    max-height: 80%;
+    overflow-y: auto;
   }
   
   .favorieten-container.show {
-    display: block; /* Toon container wanneer de klasse "show" wordt toegevoegd */
+    display: block;
   }
   
   .favorieten-container h2 {
@@ -176,19 +175,18 @@ select{
     position: absolute;
     top: 10px;
     right: 10px;
+    font-size: 24px;
     cursor: pointer;
-    font-size: 20px;
-    color: #999;
+    color: #000;
   }
   
   .favorieten-container .sluit-knop:hover {
     color: #666;
   }
   
-  /* Maximale breedte voor afbeeldingen */
   .favorieten-container img {
-    max-width: 100%; /* Afbeeldingen worden geschaald om binnen de container te passen */
-    height: auto; /* Behoud de aspectverhouding van de afbeeldingen */
+    max-width: 100%;
+    height: auto;
   }
   
 
