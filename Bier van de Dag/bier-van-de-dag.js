@@ -73,6 +73,14 @@ document.addEventListener("DOMContentLoaded", () => {
           reject("Geen weetje gevonden voor het geselecteerde bier.");
         }
       }, 1000);
+    })
+    .then((weetje) => {
+      console.log("Weetje opgelost:", weetje);
+      return weetje;
+    })
+    .catch((error) => {
+      console.error("Fout bij het ophalen van het weetje:", error);
+      throw error;
     });
   }
 
@@ -200,6 +208,12 @@ document.addEventListener("DOMContentLoaded", () => {
         top: 0,
         behavior: "smooth",
       });
+    }
+  });
+
+  selectElementById("favoriet-knop").addEventListener("click", () => {
+    if (currentBier) {
+      saveToFavorites(currentBier);
     }
   });
 
