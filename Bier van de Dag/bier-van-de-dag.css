@@ -161,16 +161,6 @@ select{
     margin-bottom: 15px;
   }
   
-  .favorieten-container ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .favorieten-container ul li {
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
-  
   .favorieten-container .sluit-knop {
     position: absolute;
     top: 10px;
@@ -187,6 +177,32 @@ select{
   .favorieten-container img {
     max-width: 100%;
     height: auto;
+  }
+
+  .weer-container {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 500px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    z-index: 1001;
+  }
+  
+  .weer-container.show {
+    display: block;
+  }
+  
+  .weer-container .sluit-weer-knop {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
   }
   
 

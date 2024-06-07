@@ -25,28 +25,28 @@ document.addEventListener("DOMContentLoaded", () => {
     return document.getElementById(id);
   }
 
-  function updateBierInfo(bier) {
+  async function fetchWeather(latitude, longitude) {
+    const apiKey = "af72c10bef76426ea42113750240706";
+    const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${latitude},${longitude}`);
+    const weatherData = await response.json();
+    return weatherData;
+  }
+
+  async function updateBierInfo(bier) {
     console.log("updateBierInfo wordt aangeroepen...");
     console.log("Ontvangen bier object:", bier);
     // Destructuring
-    const { naam, alcohol, brouwerij, stijl, beschrijving, feit, afbeelding } =
-      bier;
+    const { naam, alcohol, brouwerij, stijl, beschrijving, feit, afbeelding, locatie } = bier;
 
     selectElementById("bier-naam").innerHTML = `<strong>${naam}</strong>`;
-    selectElementById(
-      "bier-alcohol"
-    ).innerHTML = `<strong>Alcoholpercentage:</strong> ${alcohol}`;
-    selectElementById(
-      "bier-brouwerij"
-    ).innerHTML = `<strong>Brouwerij:</strong> ${brouwerij}`;
-    selectElementById(
-      "bier-stijl"
-    ).innerHTML = `<strong>Stijl:</strong> ${stijl}`;
+    selectElementById("bier-alcohol").innerHTML = `<strong>Alcoholpercentage:</strong> ${alcohol}`;
+    selectElementById("bier-brouwerij").innerHTML = `<strong>Brouwerij:</strong> ${brouwerij}`;
+    selectElementById("bier-stijl").innerHTML = `<strong>Stijl:</strong> ${stijl}`;
     selectElementById("bier-beschrijving").textContent = beschrijving;
     selectElementById("bier-afbeelding").src = afbeelding;
     selectElementById("bier-afbeelding").alt = naam;
 
-    initializeMap(bier.locatie.latitude, bier.locatie.longitude);
+    initializeMap(locatie.latitude, locatie.longitude);
 
     currentBier = bier;
   }
@@ -56,9 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (selectedStijl === "") {
       filteredBier = [...bierData]; // Geen stijl geselecteerd, toon alle bieren
     } else {
-      filteredBier = [
-        ...bierData.filter((bier) => bier.stijl === selectedStijl),
-      ];
+      filteredBier = [...bierData.filter((bier) => bier.stijl === selectedStijl)];
     }
     const randomIndex = Math.floor(Math.random() * filteredBier.length);
     return filteredBier[randomIndex];
@@ -72,15 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
           reject("Geen weetje gevonden voor het geselecteerde bier.");
         }
-      }, 1000);
-    })
-    .then((weetje) => {
-      console.log("Weetje opgelost:", weetje);
-      return weetje;
-    })
-    .catch((error) => {
-      console.error("Fout bij het ophalen van het weetje:", error);
-      throw error;
+      }, 500);
     });
   }
 
@@ -95,17 +85,14 @@ document.addEventListener("DOMContentLoaded", () => {
     } catch (error) {
       console.error(error);
       const weetjeElement = selectElementById("bier-weetje");
-      weetjeElement.textContent =
-        "Er is een fout opgetreden bij het ophalen van het weetje.";
+      weetjeElement.textContent = "Er is een fout opgetreden bij het ophalen van het weetje.";
     }
   }
 
   function saveToFavorites(bier) {
     let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
-    const isDuplicate = favorites.some(
-      (favorite) => favorite.naam === bier.naam
-    );
+    const isDuplicate = favorites.some((favorite) => favorite.naam === bier.naam);
 
     if (!isDuplicate) {
       favorites.push(bier);
@@ -169,6 +156,30 @@ document.addEventListener("DOMContentLoaded", () => {
     favorietenContainer.classList.remove("show");
   });
 
+  const toonWeerKnop = selectElementById("toon-weer-knop");
+  const sluitWeerKnop = document.querySelector(".weer-container .sluit-weer-knop");
+  const weerContainer = document.querySelector(".weer-container");
+
+  toonWeerKnop.addEventListener("click", async () => {
+    if (currentBier) {
+      try {
+        const weerInfo = selectElementById("weer-info");
+        const weather = await fetchWeather(currentBier.locatie.latitude, currentBier.locatie.longitude);
+        weerInfo.innerHTML = `
+          <p><strong>Weer bij de brouwerij:</strong></p>
+          <p>${weather.current.condition.text}, ${weather.current.temp_c}°C</p>
+        `;
+        weerContainer.classList.add("show");
+      } catch (error) {
+        console.error("Fout bij het ophalen van het weer:", error);
+      }
+    }
+  });
+
+  sluitWeerKnop.addEventListener("click", () => {
+    weerContainer.classList.remove("show");
+  });
+
   const popup = document.querySelector(".popup");
   const popupError = document.querySelector(".popup-error");
   const popupBierStijlSelect = selectElementById("popup-bierstijl-select");
@@ -176,17 +187,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const container = document.querySelector(".container");
 
   popupBevestigKnop.addEventListener("click", () => {
-    const geboortedatumInput = document.getElementById(
-      "geboortedatum-input"
-    ).value;
+    const geboortedatumInput = document.getElementById("geboortedatum-input").value;
     const geboortedatum = new Date(geboortedatumInput);
     const huidigeDatum = new Date();
-    const verschilInJaren =
-      huidigeDatum.getFullYear() - geboortedatum.getFullYear();
+    const verschilInJaren = huidigeDatum.getFullYear() - geboortedatum.getFullYear();
 
     if (verschilInJaren < 16) {
-      popupError.textContent =
-        "Je moet minimaal 16 jaar zijn om deze website te bezoeken.";
+      popupError.textContent = "Je moet minimaal 16 jaar zijn om deze website te bezoeken.";
       popupError.style.display = "block";
     } else {
       popupError.style.display = "none";
@@ -197,9 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
         selectedStijl = selectedStijlValue;
         const newBier = getRandomBier(selectedStijl);
         updateBierInfo(newBier);
-        selectElementById(
-          "geselecteerde-stijl"
-        ).textContent = `Geselecteerde stijl: ${selectedStijl}`;
+        selectElementById("geselecteerde-stijl").textContent = `Geselecteerde stijl: ${selectedStijl}`;
       });
 
       container.classList.add("show");
@@ -228,7 +233,7 @@ document.addEventListener("DOMContentLoaded", () => {
     updateBierInfo(newBier);
 
     const weetjeElement = selectElementById("bier-weetje");
-    weetjeElement.textContent = ""; //Maak de inhoud van het weetje leeg
+    weetjeElement.textContent = ""; // Maak de inhoud van het weetje leeg
 
     const weetjeKnop = selectElementById("toon-weetje-knop");
     weetjeKnop.style.display = "block"; // Maak de knop weer zichtbaar
