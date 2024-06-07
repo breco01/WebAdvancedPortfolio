@@ -210,6 +210,7 @@ select {
 .weer-container h2 {
   font-size: 24px;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .weer-container .sluit-weer-knop {
@@ -219,6 +220,21 @@ select {
   font-size: 24px;
   cursor: pointer;
 }
+
+.weer-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.weer-info p {
+    display: flex;
+    align-items: center;
+  }
+  
+  .weer-info img {
+    margin-right: 10px;
+  }
 
 .button-group {
   display: flex;

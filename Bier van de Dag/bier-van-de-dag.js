@@ -165,9 +165,10 @@ document.addEventListener("DOMContentLoaded", () => {
       try {
         const weerInfo = selectElementById("weer-info");
         const weather = await fetchWeather(currentBier.locatie.latitude, currentBier.locatie.longitude);
+        const weatherIcon = weather.current.condition.icon;
+
         weerInfo.innerHTML = `
-          <p><strong>Weer bij de brouwerij:</strong></p>
-          <p>${weather.current.condition.text}, ${weather.current.temp_c}°C</p>
+                <p>${weather.current.condition.text}, ${weather.current.temp_c}°C<img src="${weatherIcon}" alt="Weer icoon"></p>
         `;
         weerContainer.classList.add("show");
       } catch (error) {
