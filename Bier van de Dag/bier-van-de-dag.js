@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "pk.eyJ1IjoiYnJlbnRjb3JuZXQiLCJhIjoiY2x4M2V4bTRwMDA5NjJrc2I0OWlzczh5aSJ9.WRIVm2FPJm5Sb4ovgDUxbg";
     const map = new mapboxgl.Map({
       container: "map",
-      style: "mapbox://styles/mapbox/light-v10",
+      style: "mapbox://styles/mapbox/streets-v11",
       center: [longitude, latitude],
       zoom: 12,
     });
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
           reject("Geen weetje gevonden voor het geselecteerde bier.");
         }
-      }, 500);
+      }, 200);
     });
   }
 

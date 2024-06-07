@@ -1,257 +1,294 @@
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #f5deb3;
-    color: #5a3d2b;
-    margin: 0;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-    box-sizing: border-box;
+  font-family: "Arial", sans-serif;
+  background-color: #fffbe7;
+  color: #5a3d2b;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
 input[type="date"] {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    width: 100%;
-    box-sizing: border-box;
-    background-color: #fff;
-    font-size: 16px;
-    color: #5a3d2b;
-    outline: none;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #fff;
+  font-size: 16px;
+  color: #5a3d2b;
+  outline: none;
 }
 
 input[type="date"]:focus {
-    border-color: #d4af37;
-    box-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
+  border-color: #d4af37;
+  box-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
 }
 
-#bevestig-knop{
-    background-color: #d4af37;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 20px;
-    width: 100%;
+#bevestig-knop {
+  background-color: #d4af37;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 100%;
 }
 
-#bevestig-knop:hover{
-    background-color: #b8860b;
+#bevestig-knop:hover {
+  background-color: #b8860b;
 }
 
-select{
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    width: 100%;
-    box-sizing: border-box;
+select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.map{
-    height: 250px;
-    width: 100%;
-    margin-bottom: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+.map {
+  height: 250px;
+  width: 100%;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
 }
 
 .popup {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 100;
-    visibility: hidden;
-    opacity: 0;
-    transition: visibility 0s, opacity 0.5s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s;
 }
 
-.popup.show{
-    visibility: visible;
-    opacity: 1;
+.popup.show {
+  visibility: visible;
+  opacity: 1;
 }
 
 .popup-content {
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    width: 80%;
-    max-width: 400px;
-    box-sizing: border-box;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 80%;
+  max-width: 400px;
+  box-sizing: border-box;
+}
+
+.popup-content h1 {
+  font-family: "Brush Script MT", cursive;
+  font-size: 48px;
+  color: #d4af37;
 }
 
 .popup-content h2 {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
+  color: #5a3d2b;
 }
 
 .error-message {
-    color: red;
-    margin-top: 10px;
-    display: none;
+  color: red;
+  margin-top: 10px;
+  display: none;
 }
 
 @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(-20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    background-color: #fff;
-    padding: 20px;
-    margin: 20px, 0;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 80%;
-    max-width: 600px;
-    overflow: auto;
-    box-sizing: border-box;
+  from {
     opacity: 0;
     transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: #fff;
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 600px;
+  overflow: auto;
+  box-sizing: border-box;
+  opacity: 0;
+  transform: translateY(-20px);
 }
 
 .container.show {
-    animation: fadeIn 0.5s ease forwards;
+  animation: fadeIn 0.5s ease forwards;
 }
 
 .favorieten-container {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    max-width: 400px;
-    max-height: 80%;
-    overflow-y: auto;
-  }
-  
-  .favorieten-container.show {
-    display: block;
-  }
-  
-  .favorieten-container h2 {
-    font-size: 24px;
-    margin-bottom: 15px;
-  }
-  
-  .favorieten-container .sluit-knop {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 24px;
-    cursor: pointer;
-    color: #000;
-  }
-  
-  .favorieten-container .sluit-knop:hover {
-    color: #666;
-  }
-  
-  .favorieten-container img {
-    max-width: 100%;
-    height: auto;
-  }
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  max-width: 400px;
+  max-height: 80%;
+  overflow-y: auto;
+}
 
-  .weer-container {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80%;
-    max-width: 500px;
-    background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    z-index: 1001;
-  }
-  
-  .weer-container.show {
-    display: block;
-  }
-  
-  .weer-container .sluit-weer-knop {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 24px;
-    cursor: pointer;
-  }
-  
+.favorieten-container.show {
+  display: block;
+}
 
-.hidden{
-    display: none;
+.favorieten-container h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.favorieten-container .sluit-knop {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #000;
+}
+
+.favorieten-container .sluit-knop:hover {
+  color: #666;
+}
+
+.favorieten-container img {
+  max-width: 100%;
+  height: auto;
+}
+
+.weer-container {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 500px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  z-index: 1000;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.weer-container.show {
+  display: block;
+}
+
+.weer-container h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.weer-container .sluit-weer-knop {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.button-group button,
+.bier-info button {
+  background-color: #d4af37;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button-group button:hover,
+.bier-info button:hover {
+  background-color: #b8860b;
+  transform: scale(1.01);
+  transition: transform 0.3s ease;
+}
+
+.large-button {
+  background-color: #5a3d2b;
+  color: white;
+  width: 100%;
+  border-radius: 5px;
+  margin-top: 20px;
+  padding: 15px 30px;
+  font-size: 16px;
+}
+
+.large-button:hover {
+  background-color: #402a1f;
+  transform: scale(1.01);
+  transition: transform 0.3s ease;
 }
 
 h1 {
-    font-size: 48px;
-    color: #d4af37;
-    margin-bottom: 20px;
+  font-family: "Brush Script MT", cursive;
+  font-size: 48px;
+  color: #d4af37;
+  margin-bottom: 20px;
 }
 
 h2 {
-    color: #5a3d2b;
-    margin-bottom: 10px;
+  color: #5a3d2b;
 }
 
-p {
-    color: #5a3d2b;
-    margin-bottom: 5px 0;
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
 }
 
-#bier-info {
-    background-color: #fdf3e7;
-    padding: 20px;
-    border-radius: 5px;
+@media (max-width: 600px) {
+  .container {
     width: 100%;
-    box-sizing: border-box;
-}
+  }
 
-#bier-afbeelding {
-    max-height: 500px;
-    width: auto;
-    border-radius: 5px;
-    margin-bottom: 15px;
-}
+  .popup-content {
+    width: 90%;
+  }
 
-button {
-    background-color: #d4af37;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 20px;
-    align-self: center;
-}
-
-button:hover {
-    background-color: #b8860b;
+  .favorieten-container {
+    width: 90%;
+  }
 }
