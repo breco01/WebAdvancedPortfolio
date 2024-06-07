@@ -11,10 +11,10 @@ Voorbeeld: In het bestand `bierexplorer.js`, regels 43-49, heb ik JavaScript geb
 Voorbeeld: In het bestand `bierexplorer.js`, regels 43-49, heb ik JavaScript gebruikt om de tekstinhoud van een HTML-element te wijzigen nadat een knop is ingedrukt.
 
 ### 3. Event aan een element koppelen
-Voorbeeld: In het bestand `bierexplorer.js`, regels 150, 157, 164, 173, 190, 200, 230 & 239, heb ik een JavaScript-eventhandler toegevoegd aan een HTML-knop, zodat een functie wordt uitgevoerd wanneer erop wordt geklikt.
+Voorbeeld: In het bestand `bierexplorer.js`, regels 150, 157, 164, 173, 190, 209, 240 & 249, heb ik een JavaScript-eventhandler toegevoegd aan een HTML-knop, zodat een functie wordt uitgevoerd wanneer erop wordt geklikt.
 
 ### 4. Formulier valideren
-Voorbeeld: In het bestand `bierexplorer.js`, regels 200-228, heb ik JavaScript gebruikt om een HTML-formulier te valideren, met name in de sectie waar gebruikers hun geboortedatum moeten invoeren alvorens toegang te krijgen tot de website.
+Voorbeeld: In het bestand `bierexplorer.js`, regels 209-229, heb ik JavaScript gebruikt om een HTML-formulier te valideren, met name in de sectie waar gebruikers hun geboortedatum moeten invoeren alvorens toegang te krijgen tot de website.
 
 ### 5. Gebruiken van een constante
 Voorbeeld: In het bestand `bierexplorer.js`, regel 31, heb ik een constante gebruikt om de waarde van api sleutel op te slaan en te gebruiken in de functie 'fetchWeather' voor het ophalen van weerinformatie.
@@ -32,7 +32,7 @@ Voorbeeld: In het bestand `bierexplorer.js`, regels 56-65, heb ik de de spread-o
 Voorbeeld: In het bestand `bierexplorer.js`, regels 133-148, heb ik een JavaScript-lus gebruikt om door een array te itereren en dynamisch HTML-elementen te genereren voor elk element in de array.
 
 ### 10. Arrow function
-Voorbeeld: In het bestand `bierexplorer.js`, regels 150, 157, 164, 173, 190, 200, 230 & 239, heb ik een arrow-functie gebruikt als callback-functie voor het click-event van een element, wat de functionaliteit activeert om de favorieten weer te geven.
+Voorbeeld: In het bestand `bierexplorer.js`, regels 150, 157, 164, 173, 190, 209, 240 & 249, heb ik een arrow-functie gebruikt als callback-functie voor het click-event van een element, wat de functionaliteit activeert om de favorieten weer te geven.
 
 ### 11. Callback function
 Voorbeeld: In het bestand `bierexplorer.js`, regels 133-148, heb ik een callback-functie gebruikt als argument voor de 'forEach' functie.
@@ -44,7 +44,7 @@ Voorbeeld: In het bestand `bierexplorer.js`, regel 68, heb ik een Promise gebrui
 Voorbeeld: In het bestand `portfolio.js`, regels 67-85, heb ik de functie `fetchBierWeetje` geïmplementeerd, die een Promise retourneert om een feit over het geselecteerde bier op te halen en eventuele fouten logt.
 
 ### 14. Async & Await
-Voorbeeld: In het bestand `bierexplorer.js`, regels 77-90, heb ik de `async`- en `await`-sleutelwoorden gebruikt om te wachten op de data van `fetchBierWeetje` voordat de gebruikersinterface wordt bijgewerkt:
+Voorbeeld: In het bestand `bierexplorer.js`, regels 87-100, heb ik de `async`- en `await`-sleutelwoorden gebruikt om te wachten op de data van `fetchBierWeetje` voordat de gebruikersinterface wordt bijgewerkt:
 
 ### 15. Self executing function
 Voorbeeld: In het bestand `portfolio.js`, regel 5, heb ik een zelf-uitvoerende functie geschreven omdat ik niet zeker wist waar deze anders geïmplementeerd moest worden.
